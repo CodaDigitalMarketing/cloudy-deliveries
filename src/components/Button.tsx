@@ -14,11 +14,11 @@ interface ButtonProps {
 
 const variants = {
   primary:
-    "border border-accent-400/30 bg-gradient-to-b from-accent-500 to-accent-600 text-white shadow-lg shadow-accent-500/20 hover:shadow-accent-500/40 hover:from-accent-400 hover:to-accent-500",
+    "border border-accent-400/30 bg-gradient-to-b from-accent-500 to-accent-600 text-white shadow-md shadow-accent-500/20 hover:shadow-lg hover:shadow-accent-500/30 hover:from-accent-400 hover:to-accent-500",
   secondary:
-    "border border-white/10 bg-gradient-to-b from-white/10 to-white/[0.06] text-gray-100 shadow-lg shadow-black/20 hover:shadow-black/40 hover:from-white/[0.14] hover:to-white/[0.08]",
+    "border border-gray-200 bg-gradient-to-b from-white to-gray-50 text-navy-700 shadow-sm hover:shadow-md hover:from-gray-50 hover:to-gray-100",
   outline:
-    "border border-white/[0.12] bg-transparent text-gray-300 hover:border-accent-500/40 hover:text-accent-400 hover:shadow-lg hover:shadow-accent-500/10",
+    "border border-gray-300 bg-transparent text-gray-700 hover:border-accent-500/50 hover:text-accent-600 hover:shadow-md hover:shadow-accent-500/10",
 };
 
 const sizes = {
@@ -37,7 +37,7 @@ export default function Button({
   onClick,
 }: ButtonProps) {
   const baseStyles =
-    "inline-flex items-center justify-center gap-2 rounded-lg font-semibold transition-all duration-500 ease-out focus:outline-none focus:ring-2 focus:ring-accent-500/50 focus:ring-offset-2 focus:ring-offset-navy-900";
+    "inline-flex items-center justify-center gap-2 rounded-lg font-semibold transition-all duration-500 ease-out focus:outline-none focus:ring-2 focus:ring-accent-500/50 focus:ring-offset-2 focus:ring-offset-white";
 
   const classes = `${baseStyles} ${variants[variant]} ${sizes[size]} ${className}`;
 

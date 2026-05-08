@@ -1,97 +1,71 @@
 "use client";
 
 import Image from "next/image";
-import Button from "@/components/Button";
+import Link from "next/link";
 import ScrollReveal from "@/components/ScrollReveal";
-import ReviewsCarousel from "@/components/ReviewsCarousel";
 
-const services = [
-  {
-    title: "Local Deliveries",
-    description:
-      "Fast, same-day delivery of packages, groceries, and goods across your neighborhood by bicycle and e-bike.",
-    icon: (
-      <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 00-10.026 0 1.106 1.106 0 00-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12" />
-      </svg>
-    ),
-  },
-  {
-    title: "Business Logistics",
-    description:
-      "Reliable courier solutions for small businesses — we handle your daily deliveries so you can focus on growth.",
-    icon: (
-      <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 21v-7.5a.75.75 0 01.75-.75h3a.75.75 0 01.75.75V21m-4.5 0H2.36m11.14 0H18m0 0h3.64m-1.39 0V9.349m-16.5 11.65V9.35m0 0a3.001 3.001 0 003.75-.615A2.993 2.993 0 009.75 9.75c.896 0 1.7-.393 2.25-1.016a2.993 2.993 0 002.25 1.016c.896 0 1.7-.393 2.25-1.016A3.001 3.001 0 0021 9.349m-18 0a2.992 2.992 0 00-.75 1.965v0c0 .41.082.8.229 1.157M3 9.35l1.5-4.8a1.125 1.125 0 011.07-.8h12.86c.5 0 .94.33 1.07.8l1.5 4.8" />
-      </svg>
-    ),
-  },
-  {
-    title: "Eco-Friendly Transport",
-    description:
-      "Zero-emission bicycle and e-bike fleet reducing carbon footprints while keeping your deliveries fast.",
-    icon: (
-      <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M12.75 3.03v.568c0 .334.148.65.405.864l1.068.89c.442.369.535 1.01.216 1.49l-.51.766a2.25 2.25 0 01-1.161.886l-.143.048a1.107 1.107 0 00-.57 1.664c.369.555.169 1.307-.427 1.605L9 13.125l.423 1.059a.956.956 0 01-1.652.928l-.679-.906a1.125 1.125 0 00-1.906.172L4.5 15.75l-.612.153M12.75 3.031a9 9 0 00-8.862 12.872M12.75 3.031a9 9 0 016.69 14.036m0 0l-.177-.529A2.25 2.25 0 0017.128 15H16.5l-.324-.324a1.453 1.453 0 00-2.328.377l-.036.073a1.586 1.586 0 01-.982.816l-.99.282c-.55.157-.894.702-.8 1.267l.073.438a2.253 2.253 0 01-1.699 2.583" />
-      </svg>
-    ),
-  },
-];
+const WA_ICON = (
+  <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+);
 
 export default function Home() {
   return (
     <>
-      {/* Hero */}
-      <section className="relative flex min-h-screen items-center overflow-hidden">
-        {/* Background image */}
-        <div className="absolute inset-0">
-          <Image
-            src="/Cloudy Deliveries (3).jpg"
-            alt="Cloudy Deliveries rider on the road"
-            fill
-            className="object-cover opacity-20"
-            priority
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-navy-900/60 via-navy-900/80 to-navy-900" />
-        </div>
+      {/* ───────── HERO ───────── */}
+      <section className="relative flex min-h-[90vh] items-center overflow-hidden bg-gradient-to-br from-gray-50 via-white to-accent-50/30">
+        <div className="absolute inset-0 opacity-[0.025]" style={{ backgroundImage: "radial-gradient(circle at 1px 1px, rgb(0,0,0) 1px, transparent 0)", backgroundSize: "32px 32px" }} />
 
-        <div className="relative mx-auto max-w-7xl px-6 pb-20 pt-32">
-          <div className="grid items-center gap-12 lg:grid-cols-2">
+        <div className="relative mx-auto max-w-7xl px-6 pb-16 pt-28">
+          <div className="grid items-center gap-10 lg:grid-cols-2">
             <ScrollReveal>
-              <div className="flex flex-col gap-6">
-                <div className="inline-flex w-fit items-center gap-2 rounded-full border border-accent-500/20 bg-accent-500/10 px-4 py-1.5 text-sm font-medium text-accent-400">
-                  <span className="h-1.5 w-1.5 rounded-full bg-accent-500" />
-                  Award-Winning Delivery Service
-                </div>
-                <h1 className="heading-xl">
-                  Fast, Reliable &{" "}
-                  <span className="gradient-text">Eco-Friendly</span> Deliveries
-                </h1>
-                <p className="max-w-lg text-lg leading-relaxed text-gray-400">
-                  Cloudy Deliveries brings your packages, groceries, and goods to
-                  your doorstep — by bicycle. Quick, affordable, and zero
-                  emissions.
-                </p>
-                <div className="flex flex-wrap gap-4 pt-2">
-                  <Button href="/contact" size="lg">
-                    Request a Delivery
-                  </Button>
-                  <Button href="/services" variant="outline" size="lg">
-                    Our Services
-                  </Button>
-                </div>
+              <p className="mb-4 text-sm font-semibold uppercase tracking-widest text-accent-600">
+                Cape Town Township Delivery &middot; Empowering Young People
+              </p>
+              <h1 className="text-4xl font-bold leading-tight tracking-tight text-navy-700 md:text-5xl lg:text-6xl">
+                We deliver to{" "}
+                <span className="gradient-text">your door</span>{" "}
+                — by bicycle
+              </h1>
+              <p className="mt-5 max-w-lg text-lg leading-relaxed text-gray-500">
+                Groceries, food, packages, documents — anything you need, delivered fast and affordably across Cape Town&apos;s townships on our bicycle and e&#8209;bike fleet.
+              </p>
+
+              {/* Primary CTAs */}
+              <div className="mt-8 flex flex-wrap gap-3">
+                <a
+                  href="https://wa.me/27680579223"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 rounded-xl border border-green-400/30 bg-gradient-to-b from-green-500 to-green-600 px-7 py-3.5 text-base font-semibold text-white shadow-md shadow-green-500/20 transition-all duration-500 hover:shadow-lg hover:shadow-green-500/30"
+                >
+                  {WA_ICON}
+                  Order on WhatsApp
+                </a>
+                <a
+                  href="https://makeitcloudy.co.za:8800/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 rounded-xl border border-accent-400/30 bg-gradient-to-b from-accent-500 to-accent-600 px-7 py-3.5 text-base font-semibold text-white shadow-md shadow-accent-500/20 transition-all duration-500 hover:shadow-lg hover:shadow-accent-500/30"
+                >
+                  Order Online
+                </a>
               </div>
+
+              <p className="mt-4 flex items-center gap-2 text-sm text-gray-400">
+                <svg className="h-4 w-4 text-accent-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
+                Or call us: <a href="tel:0680579223" className="font-medium text-gray-600 underline decoration-gray-300 underline-offset-2 transition-colors hover:text-accent-600">068 057 9223</a>
+              </p>
             </ScrollReveal>
 
-            <ScrollReveal delay={0.2} direction="right">
-              <div className="relative mx-auto max-w-sm lg:max-w-none">
-                <div className="absolute -inset-4 rounded-3xl bg-accent-500/10 blur-3xl" />
+            <ScrollReveal delay={0.15} direction="right">
+              <div className="relative mx-auto max-w-md lg:max-w-none">
+                <div className="absolute -inset-6 rounded-3xl bg-accent-100/50 blur-3xl" />
                 <Image
                   src="/logo.png"
-                  alt="Cloudy Deliveries Logo"
-                  width={500}
-                  height={500}
-                  className="relative rounded-2xl"
+                  alt="Cloudy Deliveries"
+                  width={480}
+                  height={480}
+                  className="relative drop-shadow-lg"
                   priority
                 />
               </div>
@@ -100,130 +74,241 @@ export default function Home() {
         </div>
       </section>
 
-      {/* About snapshot */}
-      <section className="section-padding">
+      {/* ───────── HOW IT WORKS ───────── */}
+      <section id="how-it-works" className="scroll-mt-20 bg-white px-6 py-20 lg:px-24 lg:py-28">
+        <div className="mx-auto max-w-5xl">
+          <ScrollReveal>
+            <h2 className="text-center text-3xl font-bold text-navy-700 md:text-4xl">
+              How it works
+            </h2>
+            <p className="mx-auto mt-3 max-w-xl text-center text-gray-500">
+              Three steps. That&apos;s it.
+            </p>
+          </ScrollReveal>
+
+          <div className="mt-14 grid gap-8 md:grid-cols-3">
+            {[
+              {
+                step: "1",
+                title: "Place your order",
+                desc: "Message us on WhatsApp or use our online ordering platform. Tell us what you need and where.",
+                icon: (
+                  <svg className="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M10.5 1.5H8.25A2.25 2.25 0 006 3.75v16.5a2.25 2.25 0 002.25 2.25h7.5A2.25 2.25 0 0018 20.25V3.75a2.25 2.25 0 00-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3" /></svg>
+                ),
+              },
+              {
+                step: "2",
+                title: "We pick it up",
+                desc: "Our rider collects your items from the shop, restaurant, or pickup point — quickly and carefully.",
+                icon: (
+                  <svg className="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" /></svg>
+                ),
+              },
+              {
+                step: "3",
+                title: "Delivered to you",
+                desc: "Straight to your door by bicycle or e-bike. Fast, affordable, and zero emissions.",
+                icon: (
+                  <svg className="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z" /></svg>
+                ),
+              },
+            ].map((item, i) => (
+              <ScrollReveal key={item.step} delay={i * 0.1}>
+                <div className="flex flex-col items-center rounded-2xl border border-gray-200 bg-white p-8 text-center shadow-sm transition-all duration-500 hover:shadow-md">
+                  <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-accent-50 text-accent-600">
+                    {item.icon}
+                  </div>
+                  <span className="mb-1 text-xs font-bold uppercase tracking-widest text-accent-500">Step {item.step}</span>
+                  <h3 className="text-lg font-semibold text-navy-700">{item.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-gray-500">{item.desc}</p>
+                </div>
+              </ScrollReveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ───────── WHAT WE DELIVER ───────── */}
+      <section className="bg-gray-50 px-6 py-20 lg:px-24 lg:py-28">
+        <div className="mx-auto max-w-5xl">
+          <ScrollReveal>
+            <h2 className="text-center text-3xl font-bold text-navy-700 md:text-4xl">
+              What we deliver
+            </h2>
+          </ScrollReveal>
+
+          <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {[
+              { label: "Groceries", emoji: "🛒" },
+              { label: "Food orders", emoji: "🍔" },
+              { label: "Packages & parcels", emoji: "📦" },
+              { label: "Documents", emoji: "📄" },
+              { label: "Pharmacy items", emoji: "💊" },
+              { label: "Hardware supplies", emoji: "🔧" },
+              { label: "Anything local", emoji: "📍" },
+            ].map((item, i) => (
+              <ScrollReveal key={item.label} delay={i * 0.05}>
+                <div className="flex items-center gap-3 rounded-xl border border-gray-200 bg-white px-5 py-4 shadow-sm transition-all duration-500 hover:shadow-md">
+                  <span className="text-2xl">{item.emoji}</span>
+                  <span className="text-sm font-medium text-gray-700">{item.label}</span>
+                </div>
+              </ScrollReveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ───────── ABOUT ───────── */}
+      <section id="about" className="scroll-mt-20 bg-white px-6 py-20 lg:px-24 lg:py-28">
         <div className="mx-auto max-w-7xl">
           <div className="grid items-center gap-12 lg:grid-cols-2">
             <ScrollReveal direction="left">
-              <div className="relative overflow-hidden rounded-2xl">
-                <Image
-                  src="/Cloudy Deliveries (4).jpg"
-                  alt="Cloudy Deliveries team winning pitch competition"
-                  width={600}
-                  height={500}
-                  className="w-full rounded-2xl object-cover"
-                />
+              <div className="grid grid-cols-2 gap-3">
+                <div className="overflow-hidden rounded-2xl shadow-md">
+                  <Image src="/Cloudy Deliveries (6).jpg" alt="Cloudy Deliveries rider" width={300} height={400} className="h-full w-full object-cover" />
+                </div>
+                <div className="flex flex-col gap-3">
+                  <div className="overflow-hidden rounded-2xl shadow-md">
+                    <Image src="/Cloudy Deliveries (1).jpg" alt="Riders checking orders" width={300} height={200} className="h-full w-full object-cover" />
+                  </div>
+                  <div className="overflow-hidden rounded-2xl shadow-md">
+                    <Image src="/Cloudy Deliveries (5).jpg" alt="Rider at market" width={300} height={200} className="h-full w-full object-cover" />
+                  </div>
+                </div>
               </div>
             </ScrollReveal>
 
             <ScrollReveal delay={0.15}>
-              <div className="flex flex-col gap-6">
-                <h2 className="heading-lg">
-                  More Than a Delivery Service —{" "}
-                  <span className="gradient-text">A Movement</span>
-                </h2>
-                <p className="leading-relaxed text-gray-400">
-                  Born from the heart of the community, Cloudy Deliveries is an
-                  award-winning, eco-conscious delivery service that&apos;s
-                  changing how goods move through neighborhoods. Our fleet of
-                  bicycles and e-bikes delivers fast, affordably, and with zero
-                  carbon emissions.
-                </p>
-                <p className="leading-relaxed text-gray-400">
-                  Recognized as the 1st Place winner at the Kasi SME Summit 2025
-                  and a TEA Pitch Winner, we&apos;re proving that sustainable
-                  business and community impact go hand in hand.
-                </p>
-                <Button href="/portfolio" variant="secondary" className="w-fit">
-                  View Our Gallery
-                </Button>
+              <h2 className="text-3xl font-bold text-navy-700 md:text-4xl">
+                Empowering young people,{" "}
+                <span className="gradient-text">one delivery at a time</span>
+              </h2>
+              <p className="mt-5 leading-relaxed text-gray-500">
+                Cloudy Deliveries is a bicycle delivery service that empowers young people. What started with one bike and a simple idea has grown into a fleet of bicycles and e&#8209;bikes moving goods across Cape Town&apos;s townships every day — creating real jobs for young riders, cutting emissions, and connecting communities to the things they need.
+              </p>
+
+              {/* Awards */}
+              <div className="mt-8 flex flex-col gap-4">
+                <div className="flex items-start gap-4 rounded-xl border border-gray-200 bg-gray-50 p-4">
+                  <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-accent-100 text-lg">🏆</div>
+                  <div>
+                    <p className="font-semibold text-navy-700">Kasi SME Summit 2025 — 1st Place</p>
+                    <p className="text-sm text-gray-500">Recognised as a top small business at the national SME Summit.</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-4 rounded-xl border border-gray-200 bg-gray-50 p-4">
+                  <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-accent-100 text-lg">🏆</div>
+                  <div>
+                    <p className="font-semibold text-navy-700">TEA Kasi Pitch Winner — R50,000</p>
+                    <p className="text-sm text-gray-500">Won the community entrepreneurship pitch competition.</p>
+                  </div>
+                </div>
               </div>
             </ScrollReveal>
           </div>
         </div>
       </section>
 
-      {/* Services summary */}
-      <section className="section-padding bg-navy-800/30">
+      {/* ───────── PHOTO STRIP ───────── */}
+      <section className="bg-gray-50 px-6 py-20 lg:px-24 lg:py-28">
         <div className="mx-auto max-w-7xl">
           <ScrollReveal>
-            <div className="mb-14 text-center">
-              <h2 className="heading-lg">
-                What We <span className="gradient-text">Deliver</span>
-              </h2>
-              <p className="mx-auto mt-4 max-w-2xl text-gray-400">
-                From groceries to business packages, our riders are ready to get
-                your goods where they need to go — fast.
-              </p>
+            <div className="flex items-end justify-between">
+              <h2 className="text-3xl font-bold text-navy-700 md:text-4xl">See us in action</h2>
+              <Link href="/gallery" className="hidden text-sm font-semibold text-accent-600 transition-colors hover:text-accent-500 sm:inline-flex">
+                View all photos &rarr;
+              </Link>
             </div>
           </ScrollReveal>
 
-          <div className="grid gap-6 md:grid-cols-3">
-            {services.map((service, i) => (
-              <ScrollReveal key={service.title} delay={i * 0.1}>
-                <div className="glass-card flex h-full flex-col gap-4 p-8 transition-all duration-500 hover:border-accent-500/20 hover:shadow-lg hover:shadow-accent-500/5">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-accent-500/10 text-accent-400">
-                    {service.icon}
-                  </div>
-                  <h3 className="text-xl font-semibold">{service.title}</h3>
-                  <p className="text-sm leading-relaxed text-gray-400">
-                    {service.description}
-                  </p>
+          <div className="mt-10 grid grid-cols-2 gap-3 md:grid-cols-4">
+            {[
+              "/Cloudy Deliveries (3).jpg",
+              "/Cloudy Deliveries (7).jpg",
+              "/Cloudy Deliveries (4).jpg",
+              "/690597741_1556821266448792_6467830221181312039_n.jpg",
+            ].map((src, i) => (
+              <ScrollReveal key={src} delay={i * 0.08}>
+                <div className="aspect-square overflow-hidden rounded-2xl border border-gray-200 shadow-sm transition-all duration-500 hover:shadow-md">
+                  <Image src={src} alt="Cloudy Deliveries" width={400} height={400} className="h-full w-full object-cover transition-transform duration-700 hover:scale-105" />
                 </div>
               </ScrollReveal>
             ))}
           </div>
 
           <ScrollReveal delay={0.3}>
-            <div className="mt-12 text-center">
-              <Button href="/services" variant="outline">
-                View All Services
-              </Button>
+            <div className="mt-6 text-center sm:hidden">
+              <Link href="/gallery" className="text-sm font-semibold text-accent-600 transition-colors hover:text-accent-500">
+                View all photos &rarr;
+              </Link>
             </div>
           </ScrollReveal>
         </div>
       </section>
 
-      {/* Reviews preview */}
-      <section className="section-padding">
-        <div className="mx-auto max-w-7xl">
+      {/* ───────── CONTACT / ORDER ───────── */}
+      <section id="contact" className="scroll-mt-20 bg-white px-6 py-20 lg:px-24 lg:py-28">
+        <div className="mx-auto max-w-4xl">
           <ScrollReveal>
-            <div className="mb-10 text-center">
-              <h2 className="heading-lg">
-                What Our <span className="gradient-text">Customers Say</span>
-              </h2>
-              <p className="mx-auto mt-4 max-w-xl text-gray-400">
-                Don&apos;t just take our word for it — hear from the community.
-              </p>
-            </div>
-          </ScrollReveal>
-          <ReviewsCarousel />
-          <div className="mt-10 text-center">
-            <Button href="/reviews" variant="outline">
-              See All Reviews
-            </Button>
-          </div>
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="section-padding">
-        <div className="mx-auto max-w-3xl text-center">
-          <ScrollReveal>
-            <h2 className="heading-lg">
-              Ready to <span className="gradient-text">Get Started</span>?
+            <h2 className="text-center text-3xl font-bold text-navy-700 md:text-4xl">
+              Ready to order?
             </h2>
-            <p className="mx-auto mt-4 max-w-xl text-gray-400">
-              Whether you need a one-time delivery or a regular courier partner,
-              Cloudy Deliveries has you covered. Reach out today.
+            <p className="mx-auto mt-3 max-w-xl text-center text-gray-500">
+              The fastest way to reach us is WhatsApp. You can also order through our online platform or give us a call.
             </p>
-            <div className="mt-8 flex flex-wrap justify-center gap-4">
-              <Button href="/contact" size="lg">
-                Contact Us
-              </Button>
-              <Button href="tel:0680579223" variant="secondary" size="lg">
-                Call 068 057 9223
-              </Button>
+          </ScrollReveal>
+
+          <ScrollReveal delay={0.1}>
+            <div className="mt-12 grid gap-4 sm:grid-cols-3">
+              {/* WhatsApp */}
+              <a
+                href="https://wa.me/27680579223"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex flex-col items-center gap-3 rounded-2xl border border-green-200 bg-green-50 p-8 text-center transition-all duration-500 hover:shadow-lg hover:shadow-green-500/10"
+              >
+                <div className="flex h-14 w-14 items-center justify-center rounded-full bg-green-500 text-white">
+                  {WA_ICON}
+                </div>
+                <p className="text-lg font-semibold text-green-700">WhatsApp</p>
+                <p className="text-sm text-green-600/70">Chat with us to place an order or ask anything</p>
+              </a>
+
+              {/* Online ordering */}
+              <a
+                href="https://makeitcloudy.co.za:8800/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex flex-col items-center gap-3 rounded-2xl border border-accent-200 bg-accent-50 p-8 text-center transition-all duration-500 hover:shadow-lg hover:shadow-accent-500/10"
+              >
+                <div className="flex h-14 w-14 items-center justify-center rounded-full bg-accent-500 text-white">
+                  <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418" /></svg>
+                </div>
+                <p className="text-lg font-semibold text-accent-700">Order Online</p>
+                <p className="text-sm text-accent-600/70">Browse and order through our web platform</p>
+              </a>
+
+              {/* Phone */}
+              <a
+                href="tel:0680579223"
+                className="flex flex-col items-center gap-3 rounded-2xl border border-gray-200 bg-gray-50 p-8 text-center transition-all duration-500 hover:shadow-lg hover:shadow-gray-500/10"
+              >
+                <div className="flex h-14 w-14 items-center justify-center rounded-full bg-navy-500 text-white">
+                  <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" /></svg>
+                </div>
+                <p className="text-lg font-semibold text-navy-700">Call Us</p>
+                <p className="text-sm text-gray-500">068 057 9223</p>
+              </a>
+            </div>
+          </ScrollReveal>
+
+          <ScrollReveal delay={0.2}>
+            <div className="mt-10 rounded-2xl border border-gray-200 bg-gray-50 p-6 text-center">
+              <p className="text-sm font-medium text-gray-600">
+                <span className="font-semibold text-navy-700">Service area:</span>{" "}
+                Khayelitsha, Langa, Gugulethu, Nyanga, Mitchells Plain, Philippi, Athlone &amp; surrounding areas
+              </p>
+              <p className="mt-1 text-sm text-gray-400">Monday – Saturday &middot; 7:00 AM – 7:00 PM</p>
             </div>
           </ScrollReveal>
         </div>
