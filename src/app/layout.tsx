@@ -10,9 +10,9 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Cloudy Deliveries | Cape Town Township Delivery by Bicycle",
+  title: "Cloudy Deliveries | Food Delivery by Bicycle — Cape Town Townships",
   description:
-    "A bicycle delivery service that empowers young people. Fast, affordable delivery across Cape Town townships. Order via WhatsApp or online.",
+    "A bicycle food delivery service that empowers young people. Order from local restaurants and takeaways across Cape Town townships via WhatsApp or online.",
 };
 
 export default function RootLayout({

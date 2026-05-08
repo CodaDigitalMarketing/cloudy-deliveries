@@ -16,7 +16,7 @@ export default function Footer() {
               </span>
             </Link>
             <p className="mt-3 text-sm leading-relaxed text-gray-500">
-              A bicycle delivery service that empowers young people. Fast, affordable, zero emissions across Cape Town townships.
+              A bicycle food delivery service that empowers young people. Fast, affordable, zero emissions across Cape Town townships.
             </p>
           </div>
 

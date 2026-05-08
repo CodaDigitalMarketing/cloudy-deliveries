@@ -22,12 +22,12 @@ export default function Home() {
                 Cape Town Township Delivery &middot; Empowering Young People
               </p>
               <h1 className="text-4xl font-bold leading-tight tracking-tight text-navy-700 md:text-5xl lg:text-6xl">
-                We deliver to{" "}
+                Food delivered to{" "}
                 <span className="gradient-text">your door</span>{" "}
                 — by bicycle
               </h1>
               <p className="mt-5 max-w-lg text-lg leading-relaxed text-gray-500">
-                Groceries, food, packages, documents — anything you need, delivered fast and affordably across Cape Town&apos;s townships on our bicycle and e&#8209;bike fleet.
+                Order from local restaurants, takeaways, and food vendors — delivered fast and affordably across Cape Town&apos;s townships on our bicycle and e&#8209;bike fleet. Need an errand run? We do that too.
               </p>
 
               {/* Primary CTAs */}
@@ -91,7 +91,7 @@ export default function Home() {
               {
                 step: "1",
                 title: "Place your order",
-                desc: "Message us on WhatsApp or use our online ordering platform. Tell us what you need and where.",
+                desc: "Message us on WhatsApp or use our online ordering platform. Pick your food and drop your address.",
                 icon: (
                   <svg className="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M10.5 1.5H8.25A2.25 2.25 0 006 3.75v16.5a2.25 2.25 0 002.25 2.25h7.5A2.25 2.25 0 0018 20.25V3.75a2.25 2.25 0 00-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3" /></svg>
                 ),
@@ -99,7 +99,7 @@ export default function Home() {
               {
                 step: "2",
                 title: "We pick it up",
-                desc: "Our rider collects your items from the shop, restaurant, or pickup point — quickly and carefully.",
+                desc: "Our rider collects your food from the restaurant, takeaway, or vendor — quickly and carefully.",
                 icon: (
                   <svg className="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" /></svg>
                 ),
@@ -128,32 +128,39 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ───────── WHAT WE DELIVER ───────── */}
+      {/* ───────── WHAT WE DO ───────── */}
       <section className="bg-gray-50 px-6 py-20 lg:px-24 lg:py-28">
         <div className="mx-auto max-w-5xl">
-          <ScrollReveal>
-            <h2 className="text-center text-3xl font-bold text-navy-700 md:text-4xl">
-              What we deliver
-            </h2>
-          </ScrollReveal>
-
-          <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {[
-              { label: "Groceries", emoji: "🛒" },
-              { label: "Food orders", emoji: "🍔" },
-              { label: "Packages & parcels", emoji: "📦" },
-              { label: "Documents", emoji: "📄" },
-              { label: "Pharmacy items", emoji: "💊" },
-              { label: "Hardware supplies", emoji: "🔧" },
-              { label: "Anything local", emoji: "📍" },
-            ].map((item, i) => (
-              <ScrollReveal key={item.label} delay={i * 0.05}>
-                <div className="flex items-center gap-3 rounded-xl border border-gray-200 bg-white px-5 py-4 shadow-sm transition-all duration-500 hover:shadow-md">
-                  <span className="text-2xl">{item.emoji}</span>
-                  <span className="text-sm font-medium text-gray-700">{item.label}</span>
+          <div className="grid gap-8 md:grid-cols-2">
+            {/* Food delivery — primary */}
+            <ScrollReveal>
+              <div className="flex h-full flex-col rounded-2xl border border-gray-200 bg-white p-8 shadow-sm">
+                <span className="text-4xl">🍔</span>
+                <h3 className="mt-4 text-2xl font-bold text-navy-700">Food Delivery</h3>
+                <p className="mt-3 leading-relaxed text-gray-500">
+                  Our main thing. Order from local restaurants, takeaways, spaza shops, and food vendors — we pick it up and bring it straight to your door by bicycle.
+                </p>
+                <div className="mt-6 flex flex-wrap gap-2">
+                  {["Restaurants", "Takeaways", "Street food", "Spaza shops"].map((tag) => (
+                    <span key={tag} className="rounded-full bg-accent-50 px-3 py-1 text-xs font-medium text-accent-700">{tag}</span>
+                  ))}
                 </div>
-              </ScrollReveal>
-            ))}
+              </div>
+            </ScrollReveal>
+
+            {/* Errands — secondary */}
+            <ScrollReveal delay={0.1}>
+              <div className="flex h-full flex-col rounded-2xl border border-gray-200 bg-white p-8 shadow-sm">
+                <span className="text-4xl">📦</span>
+                <h3 className="mt-4 text-2xl font-bold text-navy-700">Errands</h3>
+                <p className="mt-3 leading-relaxed text-gray-500">
+                  Need something picked up or dropped off? We also run errands — collecting parcels, documents, or anything else you need moved around the neighbourhood.
+                </p>
+                <p className="mt-4 text-sm text-gray-400">
+                  Message us on WhatsApp to request an errand.
+                </p>
+              </div>
+            </ScrollReveal>
           </div>
         </div>
       </section>
@@ -184,7 +191,7 @@ export default function Home() {
                 <span className="gradient-text">one delivery at a time</span>
               </h2>
               <p className="mt-5 leading-relaxed text-gray-500">
-                Cloudy Deliveries is a bicycle delivery service that empowers young people. What started with one bike and a simple idea has grown into a fleet of bicycles and e&#8209;bikes moving goods across Cape Town&apos;s townships every day — creating real jobs for young riders, cutting emissions, and connecting communities to the things they need.
+                Cloudy Deliveries is a bicycle delivery service that empowers young people. What started with one bike and a simple idea has grown into a fleet of bicycles and e&#8209;bikes delivering food across Cape Town&apos;s townships every day — creating real jobs for young riders, cutting emissions, and connecting communities to the meals they love.
               </p>
 
               {/* Awards */}
