@@ -64,6 +64,9 @@ export default function Footer() {
               <li>
                 <a href="tel:0680579223" className="transition-colors hover:text-accent-600">068 057 9223</a>
               </li>
+              <li>
+                <a href="mailto:colinmkosi@gmail.com" className="transition-colors hover:text-accent-600">colinmkosi@gmail.com</a>
+              </li>
               <li>Cape Town, South Africa</li>
             </ul>
           </div>

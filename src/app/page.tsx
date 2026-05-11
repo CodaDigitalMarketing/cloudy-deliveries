@@ -27,7 +27,7 @@ export default function Home() {
                 — by bicycle
               </h1>
               <p className="mt-5 max-w-lg text-lg leading-relaxed text-gray-500">
-                Order from local restaurants, takeaways, and food vendors — delivered fast and affordably across Cape Town&apos;s townships on our bicycle and e&#8209;bike fleet. Need an errand run? We do that too.
+                Order from local restaurants, takeaways, and food vendors — delivered fast and affordably in Khayelitsha and Langa on our bicycle and e&#8209;bike fleet. Need an errand run? We do that too.
               </p>
 
               {/* Primary CTAs */}
@@ -131,7 +131,7 @@ export default function Home() {
       {/* ───────── WHAT WE DO ───────── */}
       <section className="bg-gray-50 px-6 py-20 lg:px-24 lg:py-28">
         <div className="mx-auto max-w-5xl">
-          <div className="grid gap-8 md:grid-cols-2">
+          <div className="grid gap-8 md:grid-cols-3">
             {/* Food delivery — primary */}
             <ScrollReveal>
               <div className="flex h-full flex-col rounded-2xl border border-gray-200 bg-white p-8 shadow-sm">
@@ -159,6 +159,24 @@ export default function Home() {
                 <p className="mt-4 text-sm text-gray-400">
                   Message us on WhatsApp to request an errand.
                 </p>
+              </div>
+            </ScrollReveal>
+
+            {/* Partner deliveries — CTA */}
+            <ScrollReveal delay={0.2}>
+              <div className="flex h-full flex-col rounded-2xl border border-dashed border-accent-300 bg-accent-50/50 p-8 shadow-sm">
+                <span className="text-4xl">🤝</span>
+                <h3 className="mt-4 text-2xl font-bold text-navy-700">Partner With Us</h3>
+                <p className="mt-3 leading-relaxed text-gray-500">
+                  We&apos;re looking to partner with local businesses to deliver their products directly into townships. If you need a last&#8209;mile delivery partner, let&apos;s talk.
+                </p>
+                <a
+                  href="mailto:colinmkosi@gmail.com"
+                  className="mt-auto inline-flex items-center gap-2 pt-4 text-sm font-semibold text-accent-600 transition-colors duration-500 hover:text-accent-500"
+                >
+                  <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" /></svg>
+                  Email us &rarr;
+                </a>
               </div>
             </ScrollReveal>
           </div>
@@ -191,7 +209,7 @@ export default function Home() {
                 <span className="gradient-text">one delivery at a time</span>
               </h2>
               <p className="mt-5 leading-relaxed text-gray-500">
-                Cloudy Deliveries is a bicycle delivery service that empowers young people. What started with one bike and a simple idea has grown into a fleet of bicycles and e&#8209;bikes delivering food across Cape Town&apos;s townships every day — creating real jobs for young riders, cutting emissions, and connecting communities to the meals they love.
+                Cloudy Deliveries is a bicycle delivery service that empowers young people. What started with one bike and a simple idea has grown into a fleet of bicycles and e&#8209;bikes delivering food across Khayelitsha and Langa every day — creating real jobs for young riders, cutting emissions, and connecting communities to the meals they love. We&apos;re expanding soon to serve more of Cape Town&apos;s townships.
               </p>
 
               {/* Awards */}
@@ -306,6 +324,7 @@ export default function Home() {
                 <p className="text-lg font-semibold text-navy-700">Call Us</p>
                 <p className="text-sm text-gray-500">068 057 9223</p>
               </a>
+
             </div>
           </ScrollReveal>
 
@@ -313,9 +332,9 @@ export default function Home() {
             <div className="mt-10 rounded-2xl border border-gray-200 bg-gray-50 p-6 text-center">
               <p className="text-sm font-medium text-gray-600">
                 <span className="font-semibold text-navy-700">Service area:</span>{" "}
-                Khayelitsha, Langa, Gugulethu, Nyanga, Mitchells Plain, Philippi, Athlone &amp; surrounding areas
+                Khayelitsha &amp; Langa &middot; <span className="text-accent-600">Expanding soon to more areas</span>
               </p>
-              <p className="mt-1 text-sm text-gray-400">Monday – Saturday &middot; 7:00 AM – 7:00 PM</p>
+              <p className="mt-1 text-sm text-gray-400">Every day &middot; 10:00 AM – 7:00 PM</p>
             </div>
           </ScrollReveal>
         </div>
